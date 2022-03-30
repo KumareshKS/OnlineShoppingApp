@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DetailsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CartTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Username" Type="varchar(max)" />
+          <Property Name="ImagePath" Type="varchar(max)" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Color" Type="varchar(max)" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Material Type" Type="varchar(max)" />
+          <Property Name="Manufacturer" Type="varchar(max)" />
+          <Property Name="Country of Origin" Type="varchar(max)" />
+          <Property Name="Item Weight" Type="varchar(max)" />
+          <Property Name="Item Dimensions LxWxH" Type="varchar(max)" />
+          <Property Name="Sport" Type="varchar(max)" />
+          <Property Name="Brand" Type="varchar(max)" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="ImageTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="ImagePath" Type="varchar(max)" />
+          <Property Name="ImageId" Type="int" />
+        </EntityType>
+        <EntityType Name="ImageTableNext">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="varchar(max)" />
+          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Color" Type="varchar(max)" />
+          <Property Name="ImageId" Type="int" />
+          <Property Name="Brand" Type="varchar(max)" />
+          <Property Name="Material Type" Type="varchar(max)" />
+          <Property Name="Manufacturer" Type="varchar(max)" />
+          <Property Name="Country of Origin" Type="varchar(max)" />
+          <Property Name="Item Weight" Type="varchar(max)" />
+          <Property Name="Item Dimensions LxWxH" Type="varchar(max)" />
+          <Property Name="Sport" Type="varchar(max)" />
+          <Property Name="Name" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="OrdersTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Username" Type="varchar(max)" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Color" Type="varchar(max)" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Brand" Type="varchar(max)" />
+          <Property Name="ImagePath" Type="varchar(max)" />
+          <Property Name="DateandTime" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="ShippingDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Username" Type="varchar(max)" />
+          <Property Name="Firstname" Type="varchar(max)" />
+          <Property Name="Lastname" Type="varchar(max)" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="City" Type="varchar(max)" />
+          <Property Name="State" Type="varchar(max)" />
+          <Property Name="Country" Type="varchar(max)" />
+          <Property Name="Pincode" Type="int" />
+          <Property Name="Email" Type="varchar(max)" />
+        </EntityType>
+        <EntityContainer Name="DetailsDBModelStoreContainer">
+          <EntitySet Name="CartTable" EntityType="Self.CartTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageTable" EntityType="Self.ImageTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageTableNext" EntityType="Self.ImageTableNext" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdersTable" EntityType="Self.OrdersTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShippingDetails" EntityType="Self.ShippingDetails" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DetailsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ImageTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImageId" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="DetailsDB" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ImageTables" EntityType="Self.ImageTable" />
+          <EntitySet Name="ImageTableNexts" EntityType="DetailsDBModel.ImageTableNext" />
+          <EntitySet Name="CartTables" EntityType="DetailsDBModel.CartTable" />
+          <EntitySet Name="ShippingDetails" EntityType="DetailsDBModel.ShippingDetail" />
+          <EntitySet Name="OrdersTables" EntityType="DetailsDBModel.OrdersTable" />
+        </EntityContainer>
+        <EntityType Name="ImageTableNext">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImageId" Type="Int32" />
+          <Property Name="Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Material_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Manufacturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Country_of_Origin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Item_Weight" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Item_Dimensions_LxWxH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sport" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CartTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Material_Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Manufacturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Country_of_Origin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Item_Weight" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Item_Dimensions_LxWxH" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Sport" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ShippingDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Firstname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Lastname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Pincode" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="OrdersTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Color" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Brand" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateandTime" Type="DateTime" Precision="0" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DetailsDBModelStoreContainer" CdmEntityContainer="DetailsDB">
+          <EntitySetMapping Name="ImageTables">
+            <EntityTypeMapping TypeName="DetailsDBModel.ImageTable">
+              <MappingFragment StoreEntitySet="ImageTable">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageTableNexts">
+            <EntityTypeMapping TypeName="DetailsDBModel.ImageTableNext">
+              <MappingFragment StoreEntitySet="ImageTableNext">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Sport" ColumnName="Sport" />
+                <ScalarProperty Name="Item_Dimensions_LxWxH" ColumnName="Item Dimensions LxWxH" />
+                <ScalarProperty Name="Item_Weight" ColumnName="Item Weight" />
+                <ScalarProperty Name="Country_of_Origin" ColumnName="Country of Origin" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Material_Type" ColumnName="Material Type" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartTables">
+            <EntityTypeMapping TypeName="DetailsDBModel.CartTable">
+              <MappingFragment StoreEntitySet="CartTable">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Sport" ColumnName="Sport" />
+                <ScalarProperty Name="Item_Dimensions_LxWxH" ColumnName="Item Dimensions LxWxH" />
+                <ScalarProperty Name="Item_Weight" ColumnName="Item Weight" />
+                <ScalarProperty Name="Country_of_Origin" ColumnName="Country of Origin" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Material_Type" ColumnName="Material Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShippingDetails">
+            <EntityTypeMapping TypeName="DetailsDBModel.ShippingDetail">
+              <MappingFragment StoreEntitySet="ShippingDetails">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdersTables">
+            <EntityTypeMapping TypeName="DetailsDBModel.OrdersTable">
+              <MappingFragment StoreEntitySet="OrdersTable">
+                <ScalarProperty Name="DateandTime" ColumnName="DateandTime" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Brand" ColumnName="Brand" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,127 @@
+﻿@model List<OnlineShoppingApp.Models.CartTable>
+@{
+    ViewBag.Title = "Cart";
+}
+@if (Session["Username"] == null)
+{
+    Response.Redirect("~/CustomerLogin/Login");
+
+}
+<style>
+    tr,th {
+        padding: 30px;
+        text-align: center
+    }
+    td{
+        padding:5px;
+    }
+    
+</style>
+
+
+<div class="row" style="background-color: lightgray;padding-top:2rem">
+    <h2 style="padding-left:3rem;padding-top:4rem">My Cart</h2>
+    <br />
+    <div class="col-8">
+        <table>
+
+            @{
+                int Total = 0;
+                int Count = 0;
+            }
+
+           @for (int i = 0; i < Model.Count; i++)
+           {
+               if (Model[i].UserId == (int)Session["UserId"])
+               {
+                   Count = Count + 1;
+                   Session["Count"] = Count;
+                   ViewBag.Count = Count;
+
+                   Total = Total + ((int)Model[i].Price * (int)Model[i].Quantity);
+                   Session["Total"] = Total;
+
+                    <tr>
+                        <td style="padding-left:3rem;">
+                            <style>
+                                .card {
+                                    height: 320px;
+                                    width: 700px;
+                                    box-shadow: 15px 20px 20px rgba(0, 0, 0,.5);
+                                    
+                                }
+
+                                .card-body {
+                                }
+
+                                .card-img {
+                                    height: 300px;
+                                    width: 200px;
+                                }
+                            </style>
+
+                            <div class="card mb-3" style="max-width: 700px;">
+                                <div class="row g-0">
+                                    <div class="col-md-4">
+                                        <img class="card-img" src="@Url.Content(Model[i].ImagePath)">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body" style="padding-top:1rem;padding-left:5rem">
+                                            <table>
+                                                <tr>
+                                                    <td><h5>Name:</h5></td>
+                                                    <td><h5>@Model[i].Name</h5></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h5>Price:</h5></td>
+                                                    <td><h5>@Model[i].Price ₹</h5></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h5>Color:</h5></td>
+                                                    <td><h5>@Model[i].Color</h5></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h5>Brand:</h5></td>
+                                                    <td><h5>@Model[i].Brand</h5></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><h5>Quantity :</h5></td>
+                                                    <td>
+                                                        <button class="btn btn-danger" onclick="location.href = '@Url.Action("Minus", "Cart", new {Model[i].Id})'" style="border-radius:100%">-</button>
+                                                        @Model[i].Quantity
+                                                        <button class="btn btn-danger" onclick="location.href = '@Url.Action("Plus","Cart",new {Model[i].Id})'" style="border-radius:100%">+</button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <br />
+                                            <div style="padding-right:9rem">
+                                                <button type="button" onclick="location.href = '@Url.Action("DeleteCartDetails","Cart",new { Id = Model[i].Id})'" class="btn btn-outline-danger"><i class="fas fa-trash"></i>Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+             }
+        </table>
+    </div>
+    <div class="col-4">
+        <div class="card" style="width:310px;height:300px;padding-top:2rem;padding-left:1rem">
+            <div class="card-body">
+                <h3 class="card-title">Price Details</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><h4>Total Items: @Session["Count"]</h4></li>
+                    <li class="list-group-item"><h4>Total Price: @Session["Total"] ₹</h4></li>
+                </ul>
+                <br />
+               
+               <div style="padding-left:4rem">
+                   <button type="button" onclick="location.href = '@Url.Action("Shippingdetails", "Shipping", new { num = Session["UserId"] })'" class="btn btn-outline-primary"><i class="fas fa-shopping-bag"></i>Buy Now</button>
+               </div>
+                
+            </div>
+        </div>        
+    </div>
+</div>

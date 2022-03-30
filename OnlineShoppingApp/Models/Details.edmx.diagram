@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6b826394d5204fd9bae428c1c7097346" Name="Diagram1">
+        <EntityTypeShape EntityType="DetailsDBModel.ImageTable" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DetailsDBModel.Child" Width="1.5" PointX="5.625" PointY="0.875" />
+        <EntityTypeShape EntityType="DetailsDBModel.Parent" Width="1.5" PointX="3.375" PointY="1.25" />
+        <AssociationConnector Association="DetailsDBModel.FK_Child_Child" />
+        <EntityTypeShape EntityType="DetailsDBModel.ImageTableNext" Width="1.5" PointX="2.5" PointY="0.5" />
+        <EntityTypeShape EntityType="DetailsDBModel.CartTable" Width="1.5" PointX="4.5" PointY="0.5" />
+        <EntityTypeShape EntityType="DetailsDBModel.ShippingDetail" Width="1.5" PointX="8.875" PointY="0.5" />
+        <EntityTypeShape EntityType="DetailsDBModel.OrdersTable" Width="1.5" PointX="6.625" PointY="0.625" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

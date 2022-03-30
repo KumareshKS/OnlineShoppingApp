@@ -1,0 +1,85 @@
+﻿@model List<OnlineShoppingApp.Models.ImageTableNext>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+@if (Session["Username"] == null)
+{
+    Response.Redirect("~/CustomerLogin/Login");
+}
+<div style="padding-top: 6rem; background-color:lightgray" class="container-fluid">
+
+    <div style="float:right;">
+        @using (Html.BeginForm("Index", "Display", FormMethod.Get))
+        {
+            @Html.TextBox("Searching")
+            <button class="btn btn-outline-danger" type="submit">Search</button>
+        }
+    </div>
+    <h3 style="padding-left:2rem">Hello, @Session["Username"].ToString()</h3>
+
+    <h2 style="padding-left:37rem;">Products</h2>
+    @{
+        int k = 0;
+    }
+    <table align="center">
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    <h3>No Products Found</h3>
+                </td>
+            </tr>
+        }
+        else
+        {
+            for (int j = 0; j < Model.Count; j++)
+            {
+
+                <tr style="padding:60px">
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        if (k < Model.Count)
+                        {
+
+                            <td>
+                                <style>
+                                    .card:hover {
+                                        transform: scale(1.10);
+                                        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+                                        transition: .2s;
+                                    }
+
+                                    .card {
+                                        height: 440px;
+                                        width: 270px;
+                                        box-shadow: 15px 20px 20px rgba(0, 0, 0,.5);
+                                        border: none;
+                                        align-items: center;
+                                        margin: 30px 70px;
+                                    }
+                                </style>
+                                <div class="card">
+                                    <img class="card-img-top" src="@Url.Content(Model[k].ImagePath)" style="height:300px;width:200px;">
+                                    <div class="card-body">
+                                        <h5>Name:   @Model[k].Name</h5>
+                                        <h5>Price:    @Model[k].Price Rs</h5>
+                                        <button type="button" onclick="location.href = '@Url.Action("NextPage", "Display", new { Id = Model[k].Id,ImagePath=Model[k].ImagePath})'" class="btn btn-danger"><i class="fas fa-shopping-bag"></i>View Details</button>
+                                    </div>
+                                </div>
+                            </td>
+
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        k++;
+                        j--;
+                    }
+                </tr>
+            }
+        }
+    </table>
+</div>

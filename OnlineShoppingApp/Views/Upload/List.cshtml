@@ -1,0 +1,58 @@
+﻿@model IEnumerable<OnlineShoppingApp.Models.ImageTable>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2 style="padding-top:6rem">List</h2>
+
+    <table>
+        <tr>
+            <td>
+                <button type="button" onclick="location.href = '@Url.Action("Create","Upload")'" >Create New</button>
+            </td>
+            <td>
+                <button type="button" onclick="location.href = '@Url.Action("ListNext","UploadNextpage")'" >Go to Nextpage</button>
+            </td>
+        </tr>
+    </table>
+    <table class="table table-primary table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    Image
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageId)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.ImagePath)" height="100" width="100" />
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageId)
+                    </td>
+                    <td>
+                        <button type="button" onclick="location.href = '@Url.Action("Edit","Upload",new { id = item.Id})'" class="btn-outline-info"><i class="fas fa-edit"></i>Edit</button>
+                        <button type="button" onclick="location.href = '@Url.Action("Delete","Upload",new { id = item.Id})'" class="btn-outline-danger"><i class="fas fa-trash"></i>Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>

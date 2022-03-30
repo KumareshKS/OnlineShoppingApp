@@ -1,0 +1,102 @@
+﻿@model OnlineShoppingApp.Models.LoginTable
+
+@{
+    ViewBag.Title = "Login";
+}
+<style>
+    #bodylogin {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        background-image: linear-gradient(to right,#1f1f1f,#ffffff);
+        align-items:center;
+        justify-content:center;
+        padding-bottom:2rem;
+        padding-top:5rem;
+    }
+    #Loginpage {
+        height: 28rem;
+        width: 25rem;
+        background-image: linear-gradient(to right,#ffffff,#1f1f1f);
+        border-radius: 30px;
+        box-shadow: 15px 20px 20px rgba(0, 0, 0,.5);
+    }
+    #login {
+        letter-spacing: 3px;
+        text-align: center;
+        padding-bottom: 6px;
+        padding-top: 20px;
+    }
+    .textlogin {
+        padding-left: 4rem;
+        font-weight: 600;
+    }
+    .textboxlogin {
+        width: 17rem;
+        padding-bottom:1rem;
+        background-color:none;
+    }
+    .buttonlogin:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+        transition: .2s;
+    }
+</style>
+
+@using (Html.BeginForm("Login", "CustomerLogin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div id="bodylogin">
+        <div id="Loginpage">
+            <h2 id="login">LOGIN</h2>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="textlogin">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div  class="textboxlogin">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="textlogin">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="textboxlogin">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" , required = "required" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"  })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div style="padding-left:4rem;padding-top: 1rem">
+                    <button type="submit" class="btn buttonlogin" style="width:17rem;color:white;border-color:black"><i class="fa fa-fw fa-user"></i>Login</button>
+                </div>
+                
+                <div style="padding-top:3rem;padding-left:2rem">
+                    <table>
+                        <tr>
+                            <td style="padding-top:7px">
+                                <h6>Don't have an account?</h6>
+                            </td>
+                            <td style="padding-left:1rem">
+                                <button type="button" onclick="location.href = '@Url.Action("Register", "CustomerLogin")'"class="btn" style="height:2rem;width:7rem; color: white;"><h6><i class="fa fa-user-plus"></i> Register</h6></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div >
+                    <lable style="color:red;padding-left:4rem">@ViewBag.ErrorMessage</lable>
+                </div>
+            </div>
+        </div>
+    </div>
+ }
+    
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

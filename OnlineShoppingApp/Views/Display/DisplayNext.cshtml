@@ -1,0 +1,104 @@
+﻿@model List<OnlineShoppingApp.Models.ImageTableNext>
+
+@{ 
+
+    int c = 0;
+    int x = 0;
+  
+}
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    if (Model[i].ImageId == ViewBag.ImageId)
+    {
+       
+        c++;
+    }
+}
+@{ 
+    int[] ListId = new int[c];
+    int[] ListPrice = new int[c];
+    string[] ListName = new string[c];
+    string[] ListImage = new string[c];
+    for (int i = 0; i < Model.Count; i++)
+    {
+        if (Model[i].ImageId == ViewBag.ImageId)
+        {
+
+            ListName[x] = Model[i].Name;
+            ListImage[x] = Model[i].ImagePath;
+            ListId[x] = Model[i].Id;
+            ListPrice[x] = Model[i].Price;
+            x++;
+        }
+    }
+}
+<div style="padding-top:6rem; background-color: lightgray ">
+    <div style="float:right;padding-right:3rem">
+       @using (Html.BeginForm("DisplayNext", "Display", FormMethod.Get))
+        {
+            @Html.TextBox("Searching")
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        }
+
+    </div>
+    <table>
+
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    <h3>No Products Found</h3>
+                </td>
+            </tr>
+        }
+        else
+        {
+            int k = 0;
+            for (int j = 0; j < ListId.Length; j++)
+            {
+
+                <tr>
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        if (k < ListId.Length)
+                        {
+                            <td>
+                                <style>
+                                    .card:hover {
+                                        transform: scale(1.10);
+                                        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+                                        transition:.2s;
+                                    }
+                                    .card {
+                                        height: 440px;
+                                        width: 270px;
+                                        box-shadow: 15px 20px 20px rgba(0, 0, 0,.5);
+                                        border: none;
+                                        align-items: center;
+                                        margin: 30px 70px;
+                                    }
+                                </style>
+                                <div class="card" >
+                                    <img class="card-img-top" src="@Url.Content(ListImage[k])" style="height:300px;width:200px;">
+                                    <div class="card-body">
+                                        <h5>Name:   @ListName[k]</h5>
+                                        <h5>Price:    @ListPrice[k] Rs</h5>
+                                        <button type="button" onclick="location.href = '@Url.Action("NextPage", "Display", new { Id = ListId[k],ImagePath=ListImage[k]})'" class="btn btn-danger"><i class="fas fa-shopping-bag"></i>View Details</button>
+                                    </div>
+                                </div>
+                            </td>
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        k++;
+                        j--;
+                    }
+                </tr>
+            }
+
+        }
+    </table>
+</div>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<OnlineShoppingApp.Models.ImageTableNext>
+
+@{
+    ViewBag.Title = "ListNext";
+}
+
+<h2 style="padding-top:6rem">ListNext</h2>
+<table>
+    <tr>
+        <td>
+            <button type="button" onclick="location.href = '@Url.Action("CreateNext","UploadNextpage")'" class="btn-sm">Create New</button>
+        </td>
+        <td>
+            <button type="button" onclick="location.href = '@Url.Action("DisplayIndex","Display")'">Go to Home</button>
+        </td>
+    </tr>
+</table>
+<table class="table table-primary table-hover">
+    <thead>
+        <tr>
+            <th>
+                Image
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Material_Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country_of_Origin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Item_Dimensions_LxWxH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sport)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    <img src="@Url.Content(item.ImagePath)" height="55" width="55" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Material_Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manufacturer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country_of_Origin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_Dimensions_LxWxH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sport)
+                </td>
+                <td>
+                    <button type="button" onclick="location.href = '@Url.Action("EditNext","UploadNextpage",new { id = item.Id})'" class="btn-outline-info"><i class="fas fa-edit"></i>Edit</button>
+                    <button type="button" onclick="location.href = '@Url.Action("DeleteNext","UploadNextpage",new { id = item.Id})'" class="btn-outline-danger"><i class="fas fa-trash"></i>Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    }
+
+</table>
+<button type="button" onclick="location.href = '@Url.Action("List","Upload")'">Back</button>

@@ -1,0 +1,58 @@
+﻿@model OnlineShoppingApp.Models.ImageTable
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2 style="padding-top:6rem">Create</h2>
+
+
+@using (Html.BeginForm("Create", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+     @Html.AntiForgeryToken()
+
+    <div class="form-horizontal container-fluid">
+        <h4>ImageTable</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.ImageId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ImageId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="ImageFile" required />
+            </div>
+        </div>
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-outline-success" />
+            </div>
+        </div>
+        <br />
+        <div>
+            <button type="button" onclick="location.href = '@Url.Action("List", "Upload")'" class="btn btn-outline-info">Bact To List</button>
+        </div>
+    </div>
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

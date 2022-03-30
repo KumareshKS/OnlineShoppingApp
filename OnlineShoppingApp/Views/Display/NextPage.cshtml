@@ -1,0 +1,103 @@
+﻿@model OnlineShoppingApp.Models.ImageTableNext
+@{
+    ViewBag.Title = "NextPage";
+}
+@{
+    Session["ImagePath"] = Model.ImagePath;
+    Session["Price"] = Model.Price;
+    Session["Description"] = Model.Description;
+    Session["Color"] = Model.Color;
+    Session["Name"] = Model.Name;
+    Session["Material_Type"] = Model.Material_Type;
+    Session["Manufacturer"] = Model.Manufacturer;
+    Session["Country_of_Origin"] = Model.Country_of_Origin;
+    Session["Item_Weight"] = Model.Item_Weight;
+    Session["Item_Dimensions_LxWxH"] = Model.Item_Dimensions_LxWxH;
+    Session["Sport"] = Model.Sport;
+    Session["Brand"] = Model.Brand;
+}
+
+<div>
+    <h4 class="container" style="padding-top:6rem">@ViewBag.Msg</h4>
+    <style>
+        .card {
+            width: 95%;
+            height: 480px;
+            box-shadow: 15px 20px 20px rgba(0, 0, 0,.5);
+        }
+    </style>
+    <div class="card container">
+        <div class="row">
+            <div class="col-md-3" style="padding-left:4rem;">
+                <img src='@Url.Content(Model.ImagePath)' width="220" height="350">
+                <div style="padding-top:1rem">
+                    <button type="button" onclick="location.href = '@Url.Action("Shippingdetails", "Shipping", new {num = Session["UserId"],Message = Session["ImagePath"]})'" class="btn btn-success" style="width:15rem"><i class="fas fa-shopping-bag"></i>Buy Now</button>
+                </div>
+                <div style="padding-top:1rem">
+                   @if (ViewBag.Msg == null)
+                    {
+                        <button type="button" onclick="location.href = '@Url.Action("AddToCart","Cart")'" class="btn btn-outline-primary" style="width:15rem"><i class="fas fa-cart-plus"></i>Add to Cart</button>
+                    }
+                    else
+                    {
+                        <button type="button" onclick="location.href = '@Url.Action("CartDetails","Cart")'" class="btn btn-outline-primary" style="width:15rem"><i class="fas fa-shopping-cart"></i> Go to Cart</button>
+
+                    }
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-body" style="padding-top:4rem;padding-left:5rem">
+                    <table cellpadding="10">
+                        <tr>
+                            <td><h5>Name:</h5></td>
+                            <td><h5>@Model.Name</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Price:</h5></td>
+                            <td><h5>@Model.Price Rs</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Color:</h5></td>
+                            <td><h5>@Model.Color</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Brand:</h5></td>
+                            <td><h5>@Model.Brand</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Material_Type:</h5></td>
+                            <td><h5>@Model.Material_Type</h5></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card-body" style="padding-top:3rem">
+                    <table cellpadding="10">
+                        <tr>
+                            <td><h5>Manufacturer:</h5></td>
+                            <td><h5>@Model.Manufacturer</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Item_Weight:</h5></td>
+                            <td><h5>@Model.Item_Weight</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Item_Dimensions_LxWxH:</h5></td>
+                            <td><h5>@Model.Item_Dimensions_LxWxH</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Sport:</h5></td>
+                            <td><h5>@Model.Sport</h5></td>
+                        </tr>
+                        <tr>
+                            <td><h5>Country_of_Origin:</h5></td>
+                            <td><h5>@Model.Country_of_Origin</h5></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
